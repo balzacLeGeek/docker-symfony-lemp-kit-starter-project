@@ -15,6 +15,17 @@ services:
       ports:
         - "8002:3306"
 
+    phpmyadmin:
+      depends_on:
+        - mysql
+      image: phpmyadmin/phpmyadmin
+      container_name: phpmyadmin
+      restart: always
+      ports:
+        - '8080:80'
+      environment:
+        PMA_HOST: mysql
+
     webserver:
       image: nginx:alpine
       container_name: app-nginx
@@ -32,4 +43,3 @@ services:
       volumes:
         - .:/symfony
         - ./docker/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
-

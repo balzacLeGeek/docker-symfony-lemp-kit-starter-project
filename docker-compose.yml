@@ -36,9 +36,9 @@ services:
       ports:
         - "8000:80"
 
-    php-fpm:
+    symfony-app:
       build: docker/php-fpm
-      container_name: app
+      container_name: symfony-app
       working_dir: /symfony
       volumes:
         - .:/symfony
